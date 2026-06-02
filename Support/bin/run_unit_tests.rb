@@ -63,9 +63,9 @@ TEST_HOST = TEST_CONFIGURATION.setting("TEST_HOST")
 
 
 SETTINGS_DIR_PATH = "#{ENV["HOME"]}/Library/Preferences/com.macromates.textmate.xcode.unit-test-settings"
-Dir.mkdir(SETTINGS_DIR_PATH) if not File.exists?(SETTINGS_DIR_PATH) and not File.directory?(SETTINGS_DIR_PATH)
+Dir.mkdir(SETTINGS_DIR_PATH) if not File.exist?(SETTINGS_DIR_PATH) and not File.directory?(SETTINGS_DIR_PATH)
 PROJECT_SETTINGS_DIR_PATH = "#{SETTINGS_DIR_PATH}/#{File.basename(ENV["TM_PROJECT_DIRECTORY"])}"
-Dir.mkdir(PROJECT_SETTINGS_DIR_PATH) if not File.exists?(PROJECT_SETTINGS_DIR_PATH) and not File.directory?(PROJECT_SETTINGS_DIR_PATH)
+Dir.mkdir(PROJECT_SETTINGS_DIR_PATH) if not File.exist?(PROJECT_SETTINGS_DIR_PATH) and not File.directory?(PROJECT_SETTINGS_DIR_PATH)
 PROJECT_SETTINGS_PATH = "#{PROJECT_SETTINGS_DIR_PATH}/#{TEST_CONFIGURATION.product_name}.plist"
 
 # load previous settings, if any
