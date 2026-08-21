@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require "#{ENV['TM_SUPPORT_PATH']}/lib/osx/plist"
+require "#{ENV['TM_SUPPORT_PATH']}/private/plist"
 require "#{ENV['TM_BUNDLE_SUPPORT']}/bin/run_xcode_target.rb"
 require "#{ENV['TM_BUNDLE_SUPPORT']}/bin/find_xcode_project.rb"
 
@@ -70,7 +70,7 @@ PROJECT_SETTINGS_PATH = "#{PROJECT_SETTINGS_DIR_PATH}/#{TEST_CONFIGURATION.produ
 
 # load previous settings, if any
 PREV_SETTINGS = if File.exist?(PROJECT_SETTINGS_PATH)
-	OSX::PropertyList.load(File.open(PROJECT_SETTINGS_PATH, 'r'))
+	Plist.load(File.open(PROJECT_SETTINGS_PATH, 'r'))
 else
 	nil
 end
@@ -99,7 +99,7 @@ end.reject{ |klass|
 	klass["methods"].size == 0
 }.sort{ |a, b| a["name"] <=> b["name"] }}
 
-values = OSX::PropertyList.load %x{"$DIALOG" -cm "$TM_BUNDLE_SUPPORT/nibs/Run Unit Tests.nib"<<END|pl
+values = Plist.load %x{"$DIALOG" -cm "$TM_BUNDLE_SUPPORT/nibs/Run Unit Tests.nib"<<END|pl
 #{TESTS.to_plist}
 END}
 
